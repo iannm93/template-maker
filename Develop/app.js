@@ -44,7 +44,7 @@ class Start {
                         
                         "Intern",
                         "Engineer",
-                        "Manager",
+                        
                         "I am done adding team members"
                     ]
                 },
@@ -58,8 +58,7 @@ class Start {
                     this.prompt2();
                 } else if (answer.specificRoles === "Engineer"){
                     this.prompt3();
-                } else if (answer.specificRoles === "Manager") {
-                    this.prompt1();
+                
                 } 
               
 
@@ -118,8 +117,7 @@ class Start {
             console.log(employees)
             if (answer.specificRoles === "Engineer"){
                 this.prompt3();
-            } else if (answer.specificcRoles === "Manager"){
-                this.prompt1();
+           
             } else if (answer.specificRoles === "Intern"){
                 this.prompt2();
             } 
@@ -168,9 +166,8 @@ prompt3(){
         const engineer = new Engineer (answer.engineersName, answer.engineersId, answer.engineersEmail, answer.engineersGithub)
         employees.push(engineer)
         console.log(employees)
-        if (answer.specificRoles === "Manager"){
-            this.prompt1();
-        } else if (answer.specificRoles === "Intern"){
+       
+          if (answer.specificRoles === "Intern"){
             this.prompt2();
         } else if (answer.specificRoles === "Engineer"){
             this.prompt3();
