@@ -41,10 +41,10 @@ class Start {
                     name: "specificRoles",
                     message: "What type of team member would you like to add?",
                     choices: [
-                        
+
                         "Intern",
                         "Engineer",
-                        
+
                         "I am done adding team members"
                     ]
                 },
@@ -52,18 +52,21 @@ class Start {
             ])
             .then(answer => {
                 const manager = new Manager(answer.managersName, answer.managersId, answer.managersEmail, answer.managersOffice)
-                 employees.push(manager)
-                console.log(employees)
-                if(answer.specificRoles === "Intern"){
-                    this.prompt2();
-                } else if (answer.specificRoles === "Engineer"){
-                    this.prompt3();
+                employees.push(manager)
                 
-                } 
-              
+                if (answer.specificRoles === "Intern") {
+                    this.prompt2();
+                } else if (answer.specificRoles === "Engineer") {
+                    this.prompt3();
+
+                } else {
+                    
+                    generateHtml();
+                }
+
 
                 // if (answer.choice === choice[0])
-             
+
             })
             .catch(err => {
                 console.log("error")
@@ -73,113 +76,133 @@ class Start {
 
     }
 
-    prompt2(){
+    prompt2() {
         return inquirer
-        .prompt ([
-            {
-                type: "input",
-                name : "internsName",
-                message: "what's your intern's name?"
-            },
-            {
-                type: "input",
-                name: "intersId",
-                message: "what's your intern's ID?"
-            },
-            {
-                type:"input",
-                name:"internsEmail",
-                message: "What's your inter's email?"
+            .prompt([
+                {
+                    type: "input",
+                    name: "internsName",
+                    message: "what's your intern's name?"
+                },
+                {
+                    type: "input",
+                    name: "internsId",
+                    message: "what's your intern's ID?"
+                },
+                {
+                    type: "input",
+                    name: "internsEmail",
+                    message: "What's your intern's email?"
 
-            },
-            {
-                type:"input",
-                name: "internsSchool",
-                message: "What's the name of your inter's university"
+                },
+                {
+                    type: "input",
+                    name: "internsSchool",
+                    message: "What's the name of your intern's university?"
 
-            },
-            {
-                type: "list",
-                name: "specificRoles",
-                message: "WHat type of team member would you like to add next?",
-                choices: [
-                    "Engineer",
-                    
-                    "Intern",
-                    "I am done adding team members"
-                ]
-            },
+                },
+                {
+                    type: "list",
+                    name: "specificRoles",
+                    message: "What type of team member would you like to add next?",
+                    choices: [
+                        "Engineer",
 
-        ])
-        .then (answer => {
-            const intern = new Intern (answer.internsName, answer.internsId, answer.internsEmail, answer.internsSchool)
-            employees.push(intern)
-            console.log(employees)
-            if (answer.specificRoles === "Engineer"){
-                this.prompt3();
-           
-            } else if (answer.specificRoles === "Intern"){
-                this.prompt2();
-            } 
-        })
-        .catch (err => {
-            console.log(err)
-        })
-    }
-prompt3(){
-    return inquirer
-    .prompt ([
-        {
-            type: "input",
-            name: "engineersName",
-            message: "what's your engineer's name"
+                        "Intern",
+                        "I am done adding team members"
+                    ]
+                },
 
-        },
-        {
-            type: "input",
-            name: "engineersId",
-            message: "what's your engineer's ID"
-        },
-        {
-            type: "input",
-            name: "engineersEmail",
-            message: "What's your engineer's email"
-        },
-        {
-            type: "input",
-            name: "engineersGithub",
-            message: "what's your engineer's github account?"
-        },
-        {
-            type: "list",
-            name: "specificRoles",
-            message: "what type of team member would you liek to add next?",
-            choices: [
+            ])
+            .then(answer => {
+                const intern = new Intern(answer.internsName, answer.internsId, answer.internsEmail, answer.internsSchool)
+                employees.push(intern)
                
-                "Intern",
-                "Engineer",
-                "I am done adding team members"
-            ]
-        }
-    ])
-    .then (answer => {
-        const engineer = new Engineer (answer.engineersName, answer.engineersId, answer.engineersEmail, answer.engineersGithub)
-        employees.push(engineer)
-        console.log(employees)
-       
-          if (answer.specificRoles === "Intern"){
-            this.prompt2();
-        } else if (answer.specificRoles === "Engineer"){
-            this.prompt3();
+                if (answer.specificRoles === "Engineer") {
+                    this.prompt3();
+
+                } else if (answer.specificRoles === "Intern") {
+                    this.prompt2();
+                } else {
+                    generateHtml();
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+    prompt3() {
+        return inquirer
+            .prompt([
+                {
+                    type: "input",
+                    name: "engineersName",
+                    message: "what's your engineer's name"
+
+                },
+                {
+                    type: "input",
+                    name: "engineersId",
+                    message: "what's your engineer's ID"
+                },
+                {
+                    type: "input",
+                    name: "engineersEmail",
+                    message: "What's your engineer's email"
+                },
+                {
+                    type: "input",
+                    name: "engineersGithub",
+                    message: "what's your engineer's github account?"
+                },
+                {
+                    type: "list",
+                    name: "specificRoles",
+                    message: "what type of team member would you liek to add next?",
+                    choices: [
+
+                        "Intern",
+                        "Engineer",
+                        "I am done adding team members"
+                    ]
+                }
+            ])
+            .then(answer => {
+                const engineer = new Engineer(answer.engineersName, answer.engineersId, answer.engineersEmail, answer.engineersGithub)
+                employees.push(engineer)
+               
+
+                if (answer.specificRoles === "Intern") {
+                    this.prompt2();
+                } else if (answer.specificRoles === "Engineer") {
+                    this.prompt3();
+                } else {
+                    generateHtml();
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+}
+
+function generateHtml() {
+
+    const html = render(employees);
+   
+    if (!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    
+    fs.writeFile(outputPath, html, err => {
+        if (err) {
+            return console.log(err)
         } 
-    })
-    .catch (err =>{
-        console.log(err)
-    })
-}
-}
+        console.log("success writing file")
 
+    });
 
+}
 
 const generator = new Start
 
