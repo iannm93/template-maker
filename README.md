@@ -19,7 +19,7 @@ This program runs in node. The user needs to install the inquirer package.
 
 ## Code Examples
 Show examples of usage:
- function generateHtml() {
+``` function generateHtml() {
 
     const html = render(employees);
    
@@ -33,7 +33,7 @@ Show examples of usage:
         } 
         console.log("success writing file")
 
-    });
+    });```
 
 
 
