@@ -41,9 +41,11 @@ class Start {
                     name: "specificRoles",
                     message: "What type of team member would you like to add?",
                     choices: [
+                        
                         "Intern",
                         "Engineer",
-                        "I am done addign team members"
+                        "Manager",
+                        "I am done adding team members"
                     ]
                 },
 
@@ -54,7 +56,12 @@ class Start {
                 console.log(employees)
                 if(answer.specificRoles === "Intern"){
                     this.prompt2();
-                }
+                } else if (answer.specificRoles === "Engineer"){
+                    this.prompt3();
+                } else if (answer.specificRoles === "Manager") {
+                    this.prompt1();
+                } 
+              
 
                 // if (answer.choice === choice[0])
              
@@ -72,11 +79,107 @@ class Start {
         .prompt ([
             {
                 type: "input",
-                name : "intern",
-                message: "what"
-            }
+                name : "internsName",
+                message: "what's your intern's name?"
+            },
+            {
+                type: "input",
+                name: "intersId",
+                message: "what's your intern's ID?"
+            },
+            {
+                type:"input",
+                name:"internsEmail",
+                message: "What's your inter's email?"
+
+            },
+            {
+                type:"input",
+                name: "internsSchool",
+                message: "What's the name of your inter's university"
+
+            },
+            {
+                type: "list",
+                name: "specificRoles",
+                message: "WHat type of team member would you like to add next?",
+                choices: [
+                    "Engineer",
+                    "Manager",
+                    "Intern",
+                    "I am done adding team members"
+                ]
+            },
+
         ])
+        .then (answer => {
+            const intern = new Intern (answer.internsName, answer.internsId, answer.internsEmail, answer.internsSchool)
+            employees.push(intern)
+            console.log(employees)
+            if (answer.specificRoles === "Engineer"){
+                this.prompt3();
+            } else if (answer.specificcRoles === "Manager"){
+                this.prompt1();
+            } else if (answer.specificRoles === "Intern"){
+                this.prompt2();
+            } 
+        })
+        .catch (err => {
+            console.log(err)
+        })
     }
+prompt3(){
+    return inquirer
+    .prompt ([
+        {
+            type: "input",
+            name: "engineersName",
+            message: "what's your engineer's name"
+
+        },
+        {
+            type: "input",
+            name: "engineersId",
+            message: "what's your engineer's ID"
+        },
+        {
+            type: "input",
+            name: "engineersEmail",
+            message: "What's your engineer's email"
+        },
+        {
+            type: "input",
+            name: "engineersGithub",
+            message: "what's your engineer's github account?"
+        },
+        {
+            type: "list",
+            name: "specificRoles",
+            message: "what type of team member would you liek to add next?",
+            choices: [
+                "Manager",
+                "Intern",
+                "Engineer",
+                "I am done adding team members"
+            ]
+        }
+    ])
+    .then (answer => {
+        const engineer = new Engineer (answer.engineersName, answer.engineersId, answer.engineersEmail, answer.engineersGithub)
+        employees.push(engineer)
+        console.log(employees)
+        if (answer.specificRoles === "Manager"){
+            this.prompt1();
+        } else if (answer.specificRoles === "Intern"){
+            this.prompt2();
+        } else if (answer.specificRoles === "Engineer"){
+            this.prompt3();
+        } 
+    })
+    .catch (err =>{
+        console.log(err)
+    })
+}
 }
 
 
@@ -84,6 +187,7 @@ class Start {
 const generator = new Start
 
 generator.prompt1()
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
