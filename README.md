@@ -35,8 +35,7 @@ Show examples of usage:
 
     });
 
-}
-//
+
 
 This is a block of code that generates HTML after the user answers the prompts. This code is essentially saying "if there is no directory called 'OUTPUT', then make one, and once thats done, generate our HTML to that directory. 
 
