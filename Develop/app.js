@@ -104,7 +104,7 @@ class Start {
                 message: "WHat type of team member would you like to add next?",
                 choices: [
                     "Engineer",
-                    "Manager",
+                    
                     "Intern",
                     "I am done adding team members"
                 ]
@@ -155,7 +155,7 @@ prompt3(){
             name: "specificRoles",
             message: "what type of team member would you liek to add next?",
             choices: [
-                "Manager",
+               
                 "Intern",
                 "Engineer",
                 "I am done adding team members"
